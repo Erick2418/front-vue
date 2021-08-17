@@ -49,7 +49,6 @@
 </div>
 
 
-  
 </template>
 
 
@@ -65,12 +64,9 @@ import Swal from 'sweetalert2';
 @Component
   export default class About extends Vue {
 
-//     @State clientes!: Cliente[];
-//       // items=[]
-//  @State cliente!: Cliente;
+
     @Getter getReservaciones!: Reservacion[]
-// // addUsers
-//     // @Mutation addUsers:any;
+
 
     @Action getReservassApi:any;
 
@@ -123,13 +119,6 @@ import Swal from 'sweetalert2';
 
       this.items=this.getReservaciones;
 
-      
-    
-    //   fecha_entrada:string ,
-    // fecha_salida:string,
-    // costo: string ,
-    // num_habitacion:string,
-    // cliente: string ,
     }
 
   }

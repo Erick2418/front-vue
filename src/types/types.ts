@@ -27,8 +27,7 @@ export interface Cliente{
 
 
 export interface authUsuario{
-    email: string,
-    password:string,
+    nameUsu: string,
 }
 export interface authLogin{
     id: string,

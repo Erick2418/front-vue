@@ -72,10 +72,11 @@ export default class Home extends Vue {
 
       
     async validate () {
-        // console.log({email:this.email,password:this.password});
+      // console.log({email:this.email,password:this.password});
         
     //   this.addAuthUsu({email:this.email,password:this.password});
       await this.LoginClienteAsync({email:this.email,password:this.password});          
+      // window.location.reload()
     }
 }
 

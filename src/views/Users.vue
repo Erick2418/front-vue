@@ -78,15 +78,12 @@ import Vue from 'vue'
     
     items:any=[]// lo agrego desde el mounted, con el metodo setusertable
 
-    
-  
     async created() {
 
       await this.getUsersApi(); //traigo a los usuarios de axios
       //  this.addUsers();//traigo los usaruios
      this.handleUsersItems(); // monto los items en la tabla
     }
-        
 
       async borrar(id:string){
         
@@ -96,16 +93,12 @@ import Vue from 'vue'
           this.handleUsersItems(); // monto los items en la tabla
        }
 
-
-
-
       formEditar(user:any){
         console.log(user);
          router.push('/editUser/'+user);
       } 
 
     beforeCreate(){
-      
      if (localStorage.getItem('x-token') === undefined || localStorage.getItem('x-token') === null) {
         this.$router.push('/login');
           Swal.fire({
@@ -115,16 +108,12 @@ import Vue from 'vue'
         // footer: '<a href="">Why do I have this issue?</a>'
       })
       }
-         
-           
+     
     }
    
-      
-      
     handleUsersItems(){
       this.items=this.getClientes;
     }
-
 
   }
 

@@ -5,27 +5,13 @@
             v-model="valid"
             lazy-validation
         >        
-            <!-- <v-text-field
-            v-model="fecha_entrada"
-            :counter="10"
-            :rules="fecha_entradaRules"
-            label="fecha_entrada"
-            required
-            ></v-text-field> -->
+
             <p>Fecha Inicio</p>
             <input type="date" id="date-input" v-model="fecha_entrada"  value="DD-MM-YYY" forma  required />
 
-            <!-- <v-text-field
-            v-model="fecha_salida"
-            :rules="fecha_salidaRules"
-            label="fecha_salida"
-            required
-            ></v-text-field>
- -->
 
             <p>Fecha Salida</p>
             <input type="date" id="date-input"  v-model="fecha_salida" value="DD-MM-YYY" forma  required />
-
 
 
             <v-text-field

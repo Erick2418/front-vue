@@ -8,13 +8,13 @@ type ClienteGetter = GetterTree<ClienteState, any>
 const state: ClienteState = {
 
     clientes: [
-            {
-                email: "",
-                name: "",
-                fecha_nacimiento: "",
-                cedula: "",
-                cellphone: ""
-            }
+        {
+            email: "",
+            name: "",
+            fecha_nacimiento: "",
+            cedula: "",
+            cellphone: ""
+        }
     ],
 
     cliente:{

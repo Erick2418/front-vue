@@ -8,7 +8,7 @@ type UserGetter = GetterTree<AuthState, any>
 
 const state: AuthState = {
 
-    authUsu:{email:'Erik',password:'123'},//NO LO USO
+    authUsu:{nameUsu:''},
     
     loginUsuario:{id:'',email:''}
 
@@ -17,7 +17,7 @@ const state: AuthState = {
 const getters: UserGetter={
 
    
-    
+  getAuthUSU: state=>state.authUsu.nameUsu,
 
     getLoginUsu: state=>state.loginUsuario,
 
@@ -32,7 +32,10 @@ const mutations: MutationTree<AuthState>={
     
       state.loginUsuario=newUser;  
     },
-  
+    addUSER(state,newUser){
+    
+      state.authUsu=newUser;  
+    },
 
 }
 
@@ -48,10 +51,10 @@ const actions: ActionTree<AuthState,any>={
             localStorage.setItem('x-token',JSON.stringify(data.token));
             localStorage.setItem('id-user',JSON.stringify(data.id));
             axios.defaults.headers.common['x-token'] = data.token;
-            // let userLogin : authLogin={ id:data.id, email:data.user }
-  
+           
+            console.log(data);
             commit('addLoginUsu',{ id:data.id, email:data.user });
-            // commit('setchecking',true);
+            commit('addAuthUsu',data.name);
             router.push('/');
           });
   
