@@ -1,32 +1,152 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app id="inspire">
+   
+    <v-navigation-drawer  v-model="drawer"
+      app >
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="text-h6">
+            Hotel
+          </v-list-item-title>
+       
+       
+        </v-list-item-content>
+      </v-list-item>
+
+      <v-divider></v-divider>
+
+      <v-list
+        dense
+        nav
+      >
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+           :to="item.to"
+          link
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+
+        </v-list-item>
+
+          <v-list-item  @click="loginGo">
+
+          <v-list-item-icon>
+            <v-icon> mdi-login </v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>Login</v-list-item-title>
+          </v-list-item-content>  
+                  
+        </v-list-item>
+
+
+
+
+
+
+
+          <v-list-item @click="logout"  to="/login">
+
+          <v-list-item-icon>
+            <v-icon> mdi-logout </v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item-content>  
+
+        </v-list-item>
+
+
+
+
+
+
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-app-bar app>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Application</v-toolbar-title>
+      
+    </v-app-bar>
+
+    <v-main>
+       <router-view></router-view>
+
+
+    </v-main>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script lang="ts">
+import axios from 'axios';
+import router from '@/router';
+import Swal from 'sweetalert2';
+ export default {
 
-#nav {
-  padding: 30px;
+    data: () => ({ 
+      drawer: null,
+       items: [
+         { title: 'Users', icon: 'mdi-account-group',to:'/users'  },
+          { title: 'Registrar Usuario', icon: 'mdi-account-plus',to:'/editUser'  },
+          { title: 'Reservaciones', icon: 'mdi-note-text',to:'/revervaciones'  },
+           { title: 'Registrar Reservacion', icon: 'mdi-note-plus',to:'/registrorever'  },
+          // { title: 'Login', icon: 'mdi-login' ,to:'/login' },
+            // { title: 'Logout', icon: 'mdi-logout',to:'/login'},
+        ],
+        right: null,
+        isLogin:localStorage.getItem('x-token')||undefined,
+    }),
+    beforeMount(){
+    
+    
+          // if(this.isLogin==undefined){
+             
+          //    router.push('/')
+          // }
+          
+          
+          // this.isLogin=  localStorage.getItem('x-token')||"";
+    },
+   methods:{
+      logout(){
+        this.$store.state()
+         axios.defaults.headers.common['x-token'] ="";
+         localStorage.removeItem('x-token');  
+         localStorage.removeItem('id-user');  
+        
+      },
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+    loginGo(){
+      
+     if (!(localStorage.getItem('x-token') === undefined || localStorage.getItem('x-token') === null)) {
+        Swal.fire({
+        icon: 'info',
+        title: 'Oops...',
+        text: 'Ya tiense una sesion',
+        // footer: '<a href="">Why do I have this issue?</a>'
+      })
+      }else{
+         router.push('/')
+      }
+    
     }
+
+
+
+    },
+    
+
+    
   }
-}
-</style>
+</script>
